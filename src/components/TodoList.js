@@ -1,13 +1,11 @@
 import TodoItem from './TodoItem';
 
-function TodoList() {
+function TodoList(props) {
   return (
     <ul className="list-group my-2">
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
+      {props.todos.map(item => (
+        <TodoItem key={item.id} todo={item} fetchTodos={props.fetchTodos} />
+      ))}
     </ul>
   );
 }
