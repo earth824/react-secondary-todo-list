@@ -1,25 +1,34 @@
 import { useState } from 'react';
-import axios from 'axios';
 
 function TodoForm(props) {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState(props.initialValue || '');
 
-  const handleSubmitForm = async e => {
+  const handleSubmitForm = e => {
     e.preventDefault();
     // validate first
 
     // success validation
-    try {
-      const res = await axios.post('http://localhost:8080/todos', {
-        title,
-        completed: false
-      });
-      props.fetchTodos();
-      setTitle('');
-      console.log(res.data);
-    } catch (err) {
-      console.log(err);
-    }
+    props.onSubmit(title);
+    setTitle('');
+
+    // if create mode
+    // else edit mode
+    // try {
+    //   const res = await axios.post('http://localhost:8080/todos', {
+    //     title,
+    //     completed: false
+    //   });
+    //   props.fetchTodos();
+    //   setTitle('');
+    //   console.log(res.data);
+    // } catch (err) {
+    //   console.log(err);
+    // }
+  };
+
+  const handleClickCancel = () => {
+    setTitle('');
+    props.onCancel?.();
   };
 
   return (
@@ -37,7 +46,7 @@ function TodoForm(props) {
         <button
           type="button"
           className="btn btn-outline-secondary"
-          onClick={() => setTitle('')}
+          onClick={handleClickCancel}
         >
           <i className="fa-solid fa-xmark" />
         </button>
