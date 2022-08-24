@@ -14,6 +14,7 @@ function TodoContainer(props) {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
+    console.log('1 effect');
     // const queryString = `?title=${searchText}&completed=${searchStatus}&sort=${sort}`;
     const queryString = [];
     if (searchText) {
@@ -32,7 +33,16 @@ function TodoContainer(props) {
       props.fetchTodos(queryString.length ? '?' + queryString.join('&') : '');
     }, 1000);
     return () => clearTimeout(timerId);
-  }, [searchText, searchStatus, sort, pageLimit, currentPage]);
+  }, [searchText, searchStatus, sort, pageLimit, currentPage, props.trigger]);
+
+  useEffect(() => {
+    console.log('2 effect');
+    setSearchText('');
+    setSeachStatus('');
+    setSort('');
+    setPageLimit(5);
+    setCurrentPage(1);
+  }, [props.trigger]);
 
   const numPage = Math.ceil(props.total / pageLimit);
 
