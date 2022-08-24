@@ -1,4 +1,4 @@
-function SearchStatus() {
+function SearchStatus(props) {
   return (
     <div className="btn-group">
       <input
@@ -6,7 +6,9 @@ function SearchStatus() {
         className="btn-check"
         name="status"
         id="all"
-        defaultChecked
+        value=""
+        onChange={props.onChange}
+        checked={props.value === ''}
       />
       <label className="btn btn-outline-secondary" htmlFor="all">
         <i className="fa-solid fa-list-ul" />
@@ -15,8 +17,10 @@ function SearchStatus() {
         type="radio"
         className="btn-check"
         name="status"
-        value="completed"
+        value="true"
         id="completed"
+        onChange={props.onChange}
+        checked={props.value === 'true'}
       />
       <label className="btn btn-outline-secondary" htmlFor="completed">
         <i className="fa-solid fa-clipboard-check" />
@@ -25,8 +29,10 @@ function SearchStatus() {
         type="radio"
         className="btn-check"
         name="status"
-        value="pending"
+        value="false"
         id="pending"
+        onChange={props.onChange}
+        checked={props.value === 'false'}
       />
       <label className="btn btn-outline-secondary" htmlFor="pending">
         <i className="fa-regular fa-clipboard" />
