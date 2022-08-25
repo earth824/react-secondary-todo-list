@@ -34,8 +34,17 @@ function TodoContextProvider(props) {
       .catch(err => console.log(err));
   };
 
+  const updateTodo = ({ title, completed }, id) => {
+    axios
+      .put('http://localhost:8080/todos/' + id, { title, completed })
+      .then(res => {
+        setTodos(todos.map(item => (item.id === id ? res.data.todo : item)));
+      })
+      .catch(err => console.log(err));
+  };
+
   return (
-    <TodoContext.Provider value={{ todos, createTodo, deleteTodo }}>
+    <TodoContext.Provider value={{ todos, createTodo, deleteTodo, updateTodo }}>
       {props.children}
     </TodoContext.Provider>
   );
