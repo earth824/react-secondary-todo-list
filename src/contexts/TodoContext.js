@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
 import todoReducer, { initialTodoState } from '../reducers/todoReducer';
 import axios from '../config/axios';
 import { LOAD_TODO } from '../actions/todoAction';
@@ -19,7 +19,11 @@ function TodoContextProvider({ children }) {
       });
   }, []);
 
-  return <TodoContext.Provider>{children}</TodoContext.Provider>;
+  return (
+    <TodoContext.Provider value={{ state, dispatch }}>
+      {children}
+    </TodoContext.Provider>
+  );
 }
 
 export default TodoContextProvider;
