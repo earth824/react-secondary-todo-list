@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-function TodoForm({ onSubmit }) {
-  const [input, setInput] = useState('');
+function TodoForm({ onSubmit, todo, onCancel }) {
+  const [input, setInput] = useState(todo?.title || '');
 
   const handleSubmitForm = e => {
     e.preventDefault();
@@ -11,6 +11,7 @@ function TodoForm({ onSubmit }) {
 
   const handleClickCancel = () => {
     setInput('');
+    onCancel?.();
   };
 
   return (
