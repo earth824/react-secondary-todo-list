@@ -6,7 +6,7 @@ import Sort from './Sort';
 import TodoList from './TodoList';
 import Pagination from './Pagination';
 
-function TodoContainer() {
+function TodoContainer({ todos }) {
   return (
     <Fragment>
       <div className="my-2 d-flex gap-3">
@@ -17,7 +17,7 @@ function TodoContainer() {
         <PageLimit />
         <Sort />
       </div>
-      <TodoList />
+      <TodoList todos={todos} />
       <div className="my-2 d-flex justify-content-between align-items-center">
         <small className="text-muted">Showing 6 to 10 of 12 entries</small>
         <Pagination />

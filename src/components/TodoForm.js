@@ -1,8 +1,22 @@
-function TodoForm() {
+import { useState } from 'react';
+
+function TodoForm({ onSubmit }) {
+  const [title, setTitle] = useState('');
+
+  const handleSubmitForm = e => {
+    e.preventDefault();
+    onSubmit(title);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmitForm}>
       <div className="input-group">
-        <input type="text" className="form-control" />
+        <input
+          type="text"
+          className="form-control"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+        />
         <button className="btn btn-primary">
           <i className="fa-solid fa-check" />
         </button>

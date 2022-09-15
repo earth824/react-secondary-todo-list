@@ -1,11 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 function Header() {
   const navigate = useNavigate();
 
+  const ctx = useAuth();
+
   const handleClickLogout = e => {
     e.preventDefault();
     localStorage.removeItem('token');
+    ctx.setIsLogged(false);
     navigate('/login');
   };
 

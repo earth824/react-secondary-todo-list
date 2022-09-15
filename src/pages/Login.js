@@ -1,7 +1,7 @@
 import LoginForm from '../components/LoginForm';
 
-function Login({ successLogin }) {
-  return <LoginForm successLogin={successLogin} />;
+function Login() {
+  return <LoginForm />;
 }
 
 export default Login;

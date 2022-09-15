@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
 
-function LoginForm({ successLogin }) {
+function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const ctx = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -16,7 +18,7 @@ function LoginForm({ successLogin }) {
         password
       });
       localStorage.setItem('token', res.data.token);
-      successLogin();
+      ctx.setIsLogged(true);
       navigate('/');
     } catch (err) {
       alert('something erong');
