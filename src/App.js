@@ -1,14 +1,16 @@
-import TodoContainer from './components/TodoContainer';
-import TodoForm from './components/TodoForm';
+import { Routes, Route } from 'react-router-dom';
+
+import RegisterPage from './pages/Register';
+import LoginPage from './pages/Login';
+import HomePage from './pages/Home';
 
 function App() {
   return (
-    <div className="container mt-5 mb-3" style={{ maxWidth: 576 }}>
-      <div className="my-4">
-        <TodoForm />
-      </div>
-      <TodoContainer />
-    </div>
+    <Routes>
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/" element={<HomePage />} />
+    </Routes>
   );
 }
 
