@@ -16,10 +16,7 @@ function RegisterForm() {
     try {
       e.preventDefault();
 
-      const res = await axios.post(
-        'http://localhost:8007/auth/register',
-        input
-      );
+      await axios.post('http://localhost:8007/auth/register', input);
       alert('register success.please login to continue.');
       navigate('/login');
     } catch (err) {
