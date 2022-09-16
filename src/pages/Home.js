@@ -37,12 +37,23 @@ function Home() {
     }
   };
 
+  const deleteTodo = async id => {
+    try {
+      await axios.delete('http://localhost:8007/todos/' + id, {
+        headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+      });
+      setTodos(todos.filter(item => item.id !== id));
+    } catch (err) {
+      alert('Error delete todo');
+    }
+  };
+
   return (
     <div className="container mt-5 mb-3" style={{ maxWidth: 576 }}>
       <div className="my-4">
         <TodoForm onSubmit={createTodo} />
       </div>
-      <TodoContainer todos={todos} />
+      <TodoContainer todos={todos} deleteTodo={deleteTodo} />
     </div>
   );
 }
